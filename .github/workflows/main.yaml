@@ -39,6 +39,7 @@ jobs:
       shell: bash
       run: |
         dotnet publish ./api -c Release -o ./api/bin/published
+
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
@@ -63,7 +64,9 @@ jobs:
           pushd artifacts/api
           zip -qq -r apiapp.zip .
           popd
+
           mv artifacts/api/apiapp.zip artifacts/apiapp.zip
+
       - name: Release artifact to GitHub
         uses: marvinpinto/action-automatic-releases@latest
         with:

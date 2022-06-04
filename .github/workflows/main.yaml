@@ -9,36 +9,36 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
-  bulid:
-    name: 'Bulid App'
-    
+  build:
+    name: 'Build App'
+
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
-
+    
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.x'
-
+    
     - name: Restore NuGet packages
       shell: bash
       run: |
         dotnet restore ./api
-
-    - name: Bulid app
+    
+    - name: Build app
       shell: bash
       run: |
-        dotnet bulid ./api -c Release
-
+        dotnet build ./api -c Release
+    
     - name: Create artifact
       shell: bash
       run: |
-        dotnet publish ./api -c Release -o ./api/bin/publish
-
+        dotnet publish ./api -c Release -o ./api/bin/published
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:

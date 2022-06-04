@@ -13,26 +13,21 @@ jobs:
         shell: bash
         run: |
           value1='This is the super secret value'
-
           echo "::add-mask::$value1"
-          echo "::set-output name=first_value::$value1" 
-
+          echo "::set-output name=first_value::$value1"
       - name: Check output value
         shell: bash
         run: |
-          echo "value: ${{ steps.first.iutputs.first_value }}"
-
+          echo "value: ${{ steps.first.outputs.first_value }}"
       - name: Check GitHub Secrets
         shell: bash
         run: |
           echo "secret: ${{ secrets.HELLO }}"
-
       - name: Check GitHub Secrets 2
-        shell: pwsh "pwsh": Unknown word.
+        shell: pwsh
         run: |
-          if ("${{ serects.HELLO }}" -eq "WORD") {
+          if ("${{ secrets.HELLO }}" -eq "World") {
             echo "YES!"
-          }
-          else{
+          } else {
             echo "NO!"
           }

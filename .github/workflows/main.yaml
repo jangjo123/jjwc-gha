@@ -16,7 +16,7 @@ jobs:
           echo "Hello World"
   second_job:
     name: 'second Job'
-    
+    needs: first_job
 
     runs-on: ubuntu-latest
 

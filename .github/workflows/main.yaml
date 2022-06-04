@@ -18,6 +18,7 @@ jobs:
 
   call_release:
     uses: ./.github/workflows/cd.yaml
+    needs: call_bulid
     with:
       title: latest
       artifact_name: apiapp

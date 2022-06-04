@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -name: Set output value 1
+      - name: Set output value 1
         id: first
         shell: bash
         run: |
@@ -16,16 +16,15 @@ jobs:
 
           echo "::set-output name=first_value::$value1"
 
-      -name: Set output value 2
+      - name: Set output value 2
         id: second
-        shell: pwsh   "pwhs": Unknown word.
+        shell: pwsh
         run: |
-          $value2='This is the second value'
+          $value2 = "This is the second value"
 
           echo "::set-output name=second_value::$value2"
 
-
-      -name: Check output value
+      - name: Check output values
         shell: bash
         run: |
           echo "first value: ${{ steps.first.outputs.first_value }}"

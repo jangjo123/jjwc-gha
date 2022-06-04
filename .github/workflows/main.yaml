@@ -5,29 +5,23 @@ on: [ 'push', 'pull_request' ]
 jobs:
   first_job:
     name: 'First Job'
-    if: github.event_name == 'push'
+    
 
-    strategy:
-      matrix:
-        os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
-        nodejs: [ '14.x', '16.x' ]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Choose node.js version
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.nodejs }}
+      - name: Say Hello from First Job
+        shell: bash
+        run: |
+          echo "Hello World"
+  second_job:
+    name: 'second Job'
+    
 
-      - name: Say Hello World from ${{ matrix.os }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say Hello from second Job
         shell: bash
         run: |
-          echo "Hello, from ${{ matrix.os }}"
-          echo "node version: $(node --version)"
-      - name: Say Hello only from Ubuntu
-        if: matrix.os == 'ubuntu-latest'
-        shell: bash
-        run: |
-          echo "Hello, from ${{ matrix.os }}"
-          echo "node version: $(node --version)"
+          echo "Lorm Ipsum"
